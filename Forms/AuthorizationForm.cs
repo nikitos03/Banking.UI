@@ -28,7 +28,6 @@ namespace Banking.UI
 
             string str = $"select id_user, login_user, password_user, is_admin from register where login_user = '{loginUser}' and password_user = '{passwordUser}'";
            
-
             SqlCommand command = new SqlCommand(str, dataBase.getConnection()); 
 
             adapter.SelectCommand = command; 

@@ -76,6 +76,7 @@ namespace Banking.UI
             this.Titles = new System.Windows.Forms.TextBox();
             this.Record = new System.Windows.Forms.Button();
             this.HelpInfo = new System.Windows.Forms.Label();
+            this.Save = new System.Windows.Forms.Button();
             this.KursValuta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RumLei)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Datcron)).BeginInit();
@@ -124,6 +125,7 @@ namespace Banking.UI
             // 
             // KursValuta
             // 
+            this.KursValuta.Controls.Add(this.Save);
             this.KursValuta.Controls.Add(this.lea);
             this.KursValuta.Controls.Add(this.ien);
             this.KursValuta.Controls.Add(this.checs);
@@ -582,6 +584,16 @@ namespace Banking.UI
             this.HelpInfo.TabIndex = 4;
             this.HelpInfo.Text = "На этой странице пользователь может сделать заметку";
             // 
+            // Save
+            // 
+            this.Save.Location = new System.Drawing.Point(470, 269);
+            this.Save.Name = "Save";
+            this.Save.Size = new System.Drawing.Size(144, 32);
+            this.Save.TabIndex = 28;
+            this.Save.Text = "Сохранить";
+            this.Save.UseVisualStyleBackColor = true;
+            this.Save.Click += new System.EventHandler(this.Save_Click);
+            // 
             // MenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -661,5 +673,6 @@ namespace Banking.UI
         private System.Windows.Forms.Label chec;
         private System.Windows.Forms.Label tur;
         private System.Windows.Forms.Label dat;
+        private System.Windows.Forms.Button Save;
     }
 }

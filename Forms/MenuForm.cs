@@ -5,12 +5,14 @@ using System.Net;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using System.IO;
+using System.Data.SqlClient;
 
 namespace Banking.UI
 {
     public partial class MenuForm : Form
     {
         private readonly checkUser _user;
+        DataBase dataBase = new DataBase();
 
         public MenuForm(checkUser user)
         {
@@ -120,6 +122,29 @@ namespace Banking.UI
                 Titles.Text = file.FileName;
                 Note.Text = File.ReadAllText(file.FileName);
             }
+        }
+
+        /// <summary>
+        /// Этот метод позволяет администратору сохранять курс валюты в базе данных;
+        /// </summary>
+        /// 
+        private void Save_Click(object sender, EventArgs e)
+        {
+            string kursvaluta = "insert into KursValuta (Dollar, Euro, Chinese_yuan, Danish_kroner, Turkish_lira, Czech_crowns, Japanese_yen, Romanian_flax)" +
+            $" values " +
+            $"(@Dollar, @Euro, @Chinese_yuan, @Danish_kroner, @Turkish_lira, @Czech_crowns, @Japanese_yen, @Romanian_flax)";
+            SqlCommand command = new SqlCommand(kursvaluta, dataBase.getConnection());
+            dataBase.openConnection();
+            command.Parameters.AddWithValue("Dollar", DollarText.Text);
+            command.Parameters.AddWithValue("Euro", EuroText.Text);
+            command.Parameters.AddWithValue("Chinese_yuan", CnyText.Text);
+            command.Parameters.AddWithValue("Danish_kroner", cron.Text);
+            command.Parameters.AddWithValue("Turkish_lira", lir.Text);
+            command.Parameters.AddWithValue("Czech_crowns", checs.Text);
+            command.Parameters.AddWithValue("Japanese_yen", ien.Text);
+            command.Parameters.AddWithValue("Romanian_flax", lea.Text);
+            command.ExecuteNonQuery();
+            dataBase.closeConnection();
         }
     }
 }
